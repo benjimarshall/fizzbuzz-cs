@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FizzBuzz
 {
@@ -15,7 +16,7 @@ namespace FizzBuzz
 
         static string fizzbuzz(int i)
         {
-            List<string> results = new List<string>();
+            var results = new List<string>();
             if (i % 3 == 0)
             {
                 results.Add("Fizz");
@@ -53,7 +54,7 @@ namespace FizzBuzz
                 results.Reverse();
             }
 
-            if (results.Count == 0)
+            if (!results.Any())
             {
                 results.Add(i.ToString());
             }
