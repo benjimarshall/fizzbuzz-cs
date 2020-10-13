@@ -25,6 +25,12 @@ namespace FizzBuzz
                     result.Append("Bang");
                 }
 
+                if (i % 11 == 0)
+                {
+                    result.Clear();
+                    result.Append("Bong");
+                }
+
                 if (result.Length == 0)
                 {
                     result.Append(i);
