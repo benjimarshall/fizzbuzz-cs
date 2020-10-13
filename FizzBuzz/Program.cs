@@ -14,6 +14,7 @@ namespace FizzBuzz
                 {
                     sb.Append("Fizz");
                 }
+
                 if (i % 5 == 0)
                 {
                     sb.Append("Buzz");
