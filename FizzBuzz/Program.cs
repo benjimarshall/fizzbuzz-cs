@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text;
+using System.Collections.Generic;
 
 namespace FizzBuzz
 {
@@ -9,34 +9,34 @@ namespace FizzBuzz
         {
             for (int i = 1; i <= 100; i++)
             {
-                StringBuilder result = new StringBuilder();
+                List<string> results = new List<string>();
                 if (i % 3 == 0)
                 {
-                    result.Append("Fizz");
+                    results.Add("Fizz");
                 }
 
                 if (i % 5 == 0)
                 {
-                    result.Append("Buzz");
+                    results.Add("Buzz");
                 }
 
                 if (i % 7 == 0)
                 {
-                    result.Append("Bang");
+                    results.Add("Bang");
                 }
 
                 if (i % 11 == 0)
                 {
-                    result.Clear();
-                    result.Append("Bong");
+                    results.Clear();
+                    results.Add("Bong");
                 }
 
-                if (result.Length == 0)
+                if (results.Count == 0)
                 {
-                    result.Append(i);
+                    results.Add(i.ToString());
                 }
 
-                Console.WriteLine(result);
+                Console.WriteLine(String.Join("", results));
             }
         }
     }
