@@ -42,6 +42,11 @@ namespace FizzBuzz
                     results.Insert(index, "Fezz");
                 }
 
+                if (i % 17 == 0)
+                {
+                    results.Reverse();
+                }
+
                 if (results.Count == 0)
                 {
                     results.Add(i.ToString());
