@@ -10,11 +10,11 @@ namespace FizzBuzz
         {
             for (int i = 1; i <= 100; i++)
             {
-                Console.WriteLine(fizzbuzz(i));
+                Console.WriteLine(FizzBuzz(i));
             }
         }
 
-        static string fizzbuzz(int i)
+        static string FizzBuzz(int i)
         {
             var results = new List<string>();
             if (i % 3 == 0)
