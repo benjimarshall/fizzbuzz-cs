@@ -19,7 +19,12 @@ namespace FizzBuzz
                 {
                     result.Append("Buzz");
                 }
-                
+
+                if (i % 7 == 0)
+                {
+                    result.Append("Bang");
+                }
+
                 if (result.Length == 0)
                 {
                     result.Append(i);
