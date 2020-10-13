@@ -21,17 +21,20 @@ namespace FizzBuzz
             {
                 Console.Write("Maximum FizzBuzz number: ");
                 var inputLine = Console.ReadLine();
+                int inputInt;
+
                 try
                 {
-                    var inputInt = int.Parse(inputLine);
-
-                    if (inputInt >= 1) return inputInt;
-                    else Console.WriteLine("Please enter an integer >= 1.");
+                    inputInt = int.Parse(inputLine);
                 }
                 catch (FormatException e)
                 {
                     Console.WriteLine("Please enter an integer.");
+                    continue;
                 }
+
+                if (inputInt >= 1) return inputInt;
+                else Console.WriteLine("Please enter an integer >= 1.");
             }
         }
 
