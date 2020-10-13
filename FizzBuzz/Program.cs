@@ -9,9 +9,18 @@ namespace FizzBuzz
         static void Main(string[] args)
         {
             var max = GetMaxFromUser();
+            var rules = new Dictionary<int, bool>()
+            {
+                { 3, true },
+                { 5, true },
+                { 7, true },
+                { 11, true },
+                { 13, true },
+                { 17, true },
+            };
             for (int i = 1; i <= max; i++)
             {
-                Console.WriteLine(FizzBuzz(i));
+                Console.WriteLine(FizzBuzz(i, rules));
             }
         }
 
@@ -49,31 +58,31 @@ namespace FizzBuzz
             }
         }
 
-        static string FizzBuzz(int i)
+        static string FizzBuzz(int i, Dictionary<int, bool> rules)
         {
             var results = new List<string>();
-            if (i % 3 == 0)
+            if (i % 3 == 0 && rules[3])
             {
                 results.Add("Fizz");
             }
 
-            if (i % 5 == 0)
+            if (i % 5 == 0 && rules[5])
             {
                 results.Add("Buzz");
             }
 
-            if (i % 7 == 0)
+            if (i % 7 == 0 && rules[7])
             {
                 results.Add("Bang");
             }
 
-            if (i % 11 == 0)
+            if (i % 11 == 0 && rules[11])
             {
                 results.Clear();
                 results.Add("Bong");
             }
 
-            if (i % 13 == 0)
+            if (i % 13 == 0 && rules[13])
             {
                 var firstBIndex = results.FindIndex(s => s.StartsWith("B"));
 
@@ -84,7 +93,7 @@ namespace FizzBuzz
                 results.Insert(firstBIndex, "Fezz");
             }
 
-            if (i % 17 == 0)
+            if (i % 17 == 0 && rules[17])
             {
                 results.Reverse();
             }
