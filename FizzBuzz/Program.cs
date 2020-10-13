@@ -28,7 +28,7 @@ namespace FizzBuzz
                 }
                 else if (inputInt >= 1)
                 {
-                    return (int)inputInt;
+                    return inputInt.Value;
                 }
                 else
                 {
