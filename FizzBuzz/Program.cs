@@ -8,9 +8,34 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            for (int i = 1; i <= 100; i++)
+            var max = GetMaxFromUser();
+            for (int i = 1; i <= max; i++)
             {
                 Console.WriteLine(FizzBuzz(i));
+            }
+        }
+
+        static int GetMaxFromUser()
+        {
+            while (true)
+            {
+                Console.Write("Maximum FizzBuzz number: ");
+                var inputLine = Console.ReadLine();
+                if (int.TryParse(inputLine, out var inputInt))
+                {
+                    if (inputInt >= 1)
+                    {
+                        return inputInt;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter an integer >= 1.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Please enter an integer.");
+                }
             }
         }
 
