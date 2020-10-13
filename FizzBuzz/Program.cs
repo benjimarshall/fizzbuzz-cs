@@ -31,6 +31,17 @@ namespace FizzBuzz
                     results.Add("Bong");
                 }
 
+                if (i % 13 == 0)
+                {
+                    var index = results.FindIndex(s => s.StartsWith("B"));
+
+                    // If none of the strings start with a "B" then index == -1
+                    // So change index to be the end of the list to append "Fezz" to
+                    index = index == -1 ? results.Count : index;
+
+                    results.Insert(index, "Fezz");
+                }
+
                 if (results.Count == 0)
                 {
                     results.Add(i.ToString());
