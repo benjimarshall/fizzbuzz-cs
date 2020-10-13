@@ -8,22 +8,17 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            var rules = new Dictionary<int, bool>()
-            {
-                { 3, true },
-                { 5, true },
-                { 7, true },
-                { 11, true },
-                { 13, true },
-                { 17, true },
-            };
-
             var argsList = new List<string>(args);
 
             // Find the maximum FizzBuzz value to calculate
             var max = GetMax(argsList);
             // If the arguments weren't parsed, stop
             if (max == null) return;
+
+            // Find the FizzBuzz rules to use
+            var rules = GetRules(argsList);
+            // If the arguments weren't parsed, stop
+            if (rules == null) return;
 
             for (int i = 1; i <= max; i++)
             {
