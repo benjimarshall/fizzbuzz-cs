@@ -9,23 +9,23 @@ namespace FizzBuzz
         {
             for (int i = 1; i <= 100; i++)
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder result = new StringBuilder();
                 if (i % 3 == 0)
                 {
-                    sb.Append("Fizz");
+                    result.Append("Fizz");
                 }
 
                 if (i % 5 == 0)
                 {
-                    sb.Append("Buzz");
+                    result.Append("Buzz");
                 }
                 
-                if (sb.Length == 0)
+                if (result.Length == 0)
                 {
-                    sb.Append(i);
+                    result.Append(i);
                 }
 
-                Console.WriteLine(sb);
+                Console.WriteLine(result);
             }
         }
     }
