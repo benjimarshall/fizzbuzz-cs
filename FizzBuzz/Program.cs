@@ -8,7 +8,6 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            var max = GetMaxFromUser();
             var rules = new Dictionary<int, bool>()
             {
                 { 3, true },
@@ -18,10 +17,131 @@ namespace FizzBuzz
                 { 13, true },
                 { 17, true },
             };
+
+            var argsList = new List<string>(args);
+
+            // Find the maximum FizzBuzz value to calculate
+            var max = GetMax(argsList);
+            // If the arguments weren't parsed, stop
+            if (max == null) return;
+
             for (int i = 1; i <= max; i++)
             {
                 Console.WriteLine(FizzBuzz(i, rules));
             }
+        }
+
+        static Dictionary<int, bool> GetRules(List<string> args)
+        {
+            Dictionary<int, bool> rules;
+
+            if (HasParameter("-r", args))
+            {
+                var ruleList = GetParameters("-r", args);
+
+                // If the arguments weren't parsed, stop
+                if (ruleList == null) return null;
+
+                rules = new Dictionary<int, bool>()
+                {
+                    { 3, false },
+                    { 5, false },
+                    { 7, false },
+                    { 11, false },
+                    { 13, false },
+                    { 17, false },
+                };
+
+                foreach (int rule_number in ruleList)
+                {
+                    if (rules.Keys.Contains(rule_number))
+                    {
+                        rules[rule_number] = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Warning: rule {rule_number} is not a recognised rule");
+                    }
+                }
+            }
+            else
+            {
+                rules = new Dictionary<int, bool>()
+                {
+                    { 3, true },
+                    { 5, true },
+                    { 7, true },
+                    { 11, true },
+                    { 13, true },
+                    { 17, true },
+                };
+            }
+
+            return rules;
+        }
+
+        static int? GetMax(List<string> args)
+        {
+            int max;
+            if (HasParameter("-m", args))
+            {
+                var maxList = GetParameters("-m", args);
+
+                // If the arguments weren't parsed, stop
+                if (maxList == null) return null;
+
+                switch (maxList.Count)
+                {
+                    case 0:
+                        Console.WriteLine("There was no value given for option -m");
+                        max = GetMaxFromUser();
+                        break;
+                    case 1:
+                        max = maxList[0];
+                        break;
+                    default:
+                        Console.WriteLine("Warning, more than one argument given for -m");
+                        max = maxList[0];
+                        break;
+                }
+            }
+            else
+            {
+                max = GetMaxFromUser();
+            }
+
+            return max;
+        }
+
+        static bool HasParameter(string optionName, List<string> args)
+        {
+            return args.Contains(optionName);
+        }
+
+        static List<int> GetParameters(string optionName, List<string> args)
+        {
+            var list = new List<int>();
+
+            var startIndex = args.IndexOf(optionName) + 1;
+            var endIndex = args.FindIndex(startIndex, s => s.StartsWith("-"));
+            // If no more arguments are found (-1) the set the end index as the end of the list
+            endIndex = endIndex == -1 ? args.Count : endIndex;
+
+            for (int current_index = startIndex; current_index < endIndex; current_index++)
+            {
+                var currentValue = ReadInt(args[current_index]);
+                if (currentValue == null)
+                {
+                    Console.WriteLine($"Invalid parameter {args[current_index]} for option {optionName}");
+                    return null;
+                }
+                else
+                {
+                    list.Add(currentValue.Value);
+                }
+            }
+
+            return list;
         }
 
         static int GetMaxFromUser()
