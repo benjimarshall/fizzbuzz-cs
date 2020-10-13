@@ -20,21 +20,32 @@ namespace FizzBuzz
             while (true)
             {
                 Console.Write("Maximum FizzBuzz number: ");
-                var inputLine = Console.ReadLine();
-                int inputInt;
 
-                try
-                {
-                    inputInt = int.Parse(inputLine);
-                }
-                catch (FormatException e)
+                var inputInt = ReadInt(Console.ReadLine());
+                if (inputInt == null)
                 {
                     Console.WriteLine("Please enter an integer.");
-                    continue;
                 }
+                else if (inputInt >= 1)
+                {
+                    return (int)inputInt;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter an integer >= 1.");
+                }
+            }
+        }
 
-                if (inputInt >= 1) return inputInt;
-                else Console.WriteLine("Please enter an integer >= 1.");
+        static int? ReadInt(string inputLine)
+        {
+            try
+            {
+                return int.Parse(inputLine);
+            }
+            catch (FormatException e)
+            {
+                return null;
             }
         }
 
