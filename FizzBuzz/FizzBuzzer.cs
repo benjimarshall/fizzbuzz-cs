@@ -1,28 +1,40 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FizzBuzz
 {
-    class Program
+    class FizzBuzzer : IEnumerator<string>
     {
-        static void Main(string[] args)
+        private int sequencePosition = 0;
+        private readonly int max;
+        private readonly Dictionary<int, bool> rules;
+
+        public FizzBuzzer(int max, Dictionary<int, bool> rules)
         {
-            var argsList = new List<string>(args);
+            this.max = max;
+            this.rules = rules;
+        }
 
-            var max = InputUtils.GetMax(argsList);
-
-            var rules = InputUtils.GetRules(argsList);
-
-            FizzBuzzGame game = new FizzBuzzGame(max, rules);
-
-            foreach (var value in game)
+        public bool MoveNext()
+        {
+            if (sequencePosition < max)
             {
-                Console.WriteLine(value);
+                sequencePosition++;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
-        static string FizzBuzz(int i, Dictionary<int, bool> rules)
+        public void Reset()
+        {
+            sequencePosition = 0;
+        }
+
+        private static string FizzBuzz(int i, Dictionary<int, bool> rules)
         {
             var results = new List<string>();
             if (i % 3 == 0 && rules[3])
@@ -67,7 +79,13 @@ namespace FizzBuzz
                 results.Add(i.ToString());
             }
 
-            return String.Join("", results);
+            return string.Join("", results);
         }
+
+        public string Current => FizzBuzz(sequencePosition, rules);
+
+        object? IEnumerator.Current => Current;
+
+        public void Dispose() { }
     }
 }
