@@ -360,7 +360,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-
-# Launch settings (command line arguments used by VS debugger)
-**/Properties/launchSettings.json
-
