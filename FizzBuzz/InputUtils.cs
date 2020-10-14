@@ -35,25 +35,13 @@ namespace FizzBuzz
 
             var rules = new Dictionary<int, bool>()
             {
-                { 3, false },
-                { 5, false },
-                { 7, false },
-                { 11, false },
-                { 13, false },
-                { 17, false },
+                { 3, rulesInput.Contains(3) },
+                { 5, rulesInput.Contains(5) },
+                { 7, rulesInput.Contains(7) },
+                { 11, rulesInput.Contains(11) },
+                { 13, rulesInput.Contains(13) },
+                { 17, rulesInput.Contains(17) },
             };
-
-            foreach (int ruleNumber in rulesInput)
-            {
-                if (rules.Keys.Contains(ruleNumber))
-                {
-                    rules[ruleNumber] = true;
-                }
-                else
-                {
-                    Console.WriteLine($"Warning: rule {ruleNumber} is not a recognised rule");
-                }
-            }
 
             return rules;
         }
