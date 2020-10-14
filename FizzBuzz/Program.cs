@@ -10,12 +10,10 @@ namespace FizzBuzz
         {
             var argsList = new List<string>(args);
 
-            // Find the maximum FizzBuzz value to calculate
             var max = GetMax(argsList);
             // If the arguments weren't parsed, stop
             if (max == null) return;
 
-            // Find the FizzBuzz rules to use
             var rules = GetRules(argsList);
             // If the arguments weren't parsed, stop
             if (rules == null) return;
@@ -32,10 +30,10 @@ namespace FizzBuzz
 
             if (HasParameter("-r", args))
             {
-                var ruleList = GetParameters("-r", args);
+                var rulesInput = GetParameters("-r", args);
 
                 // If the arguments weren't parsed, stop
-                if (ruleList == null) return null;
+                if (rulesInput == null) return null;
 
                 rules = new Dictionary<int, bool>()
                 {
@@ -47,15 +45,15 @@ namespace FizzBuzz
                     { 17, false },
                 };
 
-                foreach (int rule_number in ruleList)
+                foreach (int ruleNumber in rulesInput)
                 {
-                    if (rules.Keys.Contains(rule_number))
+                    if (rules.Keys.Contains(ruleNumber))
                     {
-                        rules[rule_number] = true;
+                        rules[ruleNumber] = true;
                     }
                     else
                     {
-                        Console.WriteLine($"Warning: rule {rule_number} is not a recognised rule");
+                        Console.WriteLine($"Warning: rule {ruleNumber} is not a recognised rule");
                     }
                 }
             }
@@ -122,12 +120,12 @@ namespace FizzBuzz
             // If no more arguments are found (-1) the set the end index as the end of the list
             endIndex = endIndex == -1 ? args.Count : endIndex;
 
-            for (int current_index = startIndex; current_index < endIndex; current_index++)
+            for (int currentIndex = startIndex; currentIndex < endIndex; currentIndex++)
             {
-                var currentValue = ReadInt(args[current_index]);
+                var currentValue = ReadInt(args[currentIndex]);
                 if (currentValue == null)
                 {
-                    Console.WriteLine($"Invalid parameter {args[current_index]} for option {optionName}");
+                    Console.WriteLine($"Invalid parameter {args[currentIndex]} for option {optionName}");
                     return null;
                 }
                 else
