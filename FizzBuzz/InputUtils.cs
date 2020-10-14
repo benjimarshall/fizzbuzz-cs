@@ -10,7 +10,7 @@ namespace FizzBuzz
         {
             if (HasParameter("-r", args))
             {
-                var rulesInput = GetParameters("-r", args);
+                var rulesInput = GetValuesFromCmdArguments("-r", args);
 
                 var rules = ParseRulesInput(rulesInput);
                 if (rules != null) return rules;
@@ -62,7 +62,7 @@ namespace FizzBuzz
         {
             if (HasParameter("-m", args))
             {
-                var maxList = GetParameters("-m", args);
+                var maxList = GetValuesFromCmdArguments("-m", args);
 
                 var max = ParseMaxInput(maxList);
 
@@ -96,7 +96,7 @@ namespace FizzBuzz
             return args.Contains(optionName);
         }
 
-        static List<int> GetParameters(string optionName, List<string> args)
+        static List<int> GetValuesFromCmdArguments(string optionName, List<string> args)
         {
             var list = new List<int>();
 
