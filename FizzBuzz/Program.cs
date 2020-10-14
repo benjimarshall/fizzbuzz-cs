@@ -20,7 +20,7 @@ namespace FizzBuzz
                   .Select<(int n, string message), (int, string)>(tuple => (tuple.n, tuple.message + (tuple.n % 5 == 0 ? "Buzz" : "")))
                   .Select<(int n, string message), (int, string)>(tuple => (tuple.n, tuple.message + (tuple.n % 7 == 0 ? "Bang" : "")))
                   // Add numbers in if they are not Fizz/Buzz/Bang
-                  .Select<(int n, string message), (int, string)>(tuple => (tuple.n, tuple.message == "" ? tuple.n.ToString() : x.msg))
+                  .Select<(int n, string message), (int, string)>(tuple => (tuple.n, tuple.message == "" ? tuple.n.ToString() : tuple.message))
                   .Select<(int n, string message), string>(tuple => tuple.message.ToString())
               )
             );
